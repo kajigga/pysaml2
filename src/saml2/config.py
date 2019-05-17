@@ -435,9 +435,11 @@ class Config(object):
             for endpspec in endps[service]:
                 try:
                     endp, bind = endpspec
-                    if binding is None or bind == binding:
-                        spec.append(endp)
-                except ValueError:
+                    # if binding is None or bind == binding:
+                    #     spec.append(endp)
+                    spec.append(endp)
+                except ValueError as exc:
+                    logger.error('exc %s', exc)
                     unspec.append(endpspec)
 
         if spec:
